@@ -11,7 +11,8 @@ import {addTodo,
     deleteTodo,
     deleteCompletedTodos,
     getTodoByTitle,
-    ByDate
+    ByDate,
+    demoRoute
     } from "../controller/todoController"
 
 import {DataValidation} from "../validations/dataValidation"
@@ -32,6 +33,9 @@ router.delete('/deletetodo/:id',deleteTodo)
 router.delete('/deletemany',deleteCompletedTodos)
 
 router.get('/todos/:targetDate',ByDate)
+
+
+
 
 
 module.exports = router

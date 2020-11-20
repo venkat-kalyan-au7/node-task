@@ -17,4 +17,8 @@ app.use(morgan('tiny'))
 
 app.use('/api',todoRoutes)
 
+app.get('/',(req,res)=>{
+    res.send('go to this url to run api on postman: https://documenter.getpostman.com/view/11110002/TVetc6Mu#c1420970-16dc-4ac2-9239-d6ea55943742')
+})
+
 module.exports = app
