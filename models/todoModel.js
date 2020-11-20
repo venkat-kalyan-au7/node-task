@@ -30,6 +30,8 @@ const todoSchema = new mongoose.Schema({
         required:true,
         default:'todo'
     }
+},{
+    timestamps:true
 })
 
 const Todo= mongoose.model('todo',todoSchema)

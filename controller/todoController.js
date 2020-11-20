@@ -1,6 +1,6 @@
 import Todo from "../models/todoModel"
 import asyncHandler from "express-async-handler"
-import e from "express"
+
 
 
 const addTodo=(req,res)=>{
@@ -56,6 +56,29 @@ const listOfTodos=async (req, res) => {
       })
     }
 }
+
+
+const ByDate=asyncHandler(async(req,res)=>{
+    const query = await Todo.find({targetDate:req.params.targetDate})
+
+    if(query){
+        res.json({
+            query
+        })
+    }
+
+    else {
+        res.status(404)
+        .json({
+            message:'Search Item not Found'
+        })
+      }
+
+    
+})
+
+
+
 
 
 const viewSingleTodo=asyncHandler(async (req, res) => {
@@ -159,6 +182,8 @@ const deleteCompletedTodos= asyncHandler(async(req,res)=>{
 
 })
 
+
+
 export {
     addTodo,
     listOfTodos,
@@ -166,5 +191,7 @@ export {
     updateTodo,
     deleteTodo,
     deleteCompletedTodos,
-    getTodoByTitle
+    getTodoByTitle,
+    ByDate,
+   
 }

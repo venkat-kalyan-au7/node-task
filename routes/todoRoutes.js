@@ -10,23 +10,28 @@ import {addTodo,
     updateTodo,
     deleteTodo,
     deleteCompletedTodos,
-    getTodoByTitle} from "../controller/todoController"
+    getTodoByTitle,
+    ByDate
+    } from "../controller/todoController"
+
+import {DataValidation} from "../validations/dataValidation"
 
 
-
-router.post('/addtodo',upload.any(),addTodo)
+router.post('/addtodo',upload.any(),DataValidation,addTodo)
 
 router.get('/viewtodos',listOfTodos)
 
 router.get('/tododetails/:id',viewSingleTodo)
 
-router.put('/updatetodo/:id',updateTodo)
+router.put('/updatetodo/:id',DataValidation,updateTodo)
 
 router.get('/:title',getTodoByTitle)
 
 router.delete('/deletetodo/:id',deleteTodo)
 
 router.delete('/deletemany',deleteCompletedTodos)
+
+router.get('/todos/:targetDate',ByDate)
 
 
 module.exports = router
