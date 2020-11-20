@@ -1,5 +1,6 @@
 import Todo from "../models/todoModel"
 import asyncHandler from "express-async-handler"
+import e from "express"
 
 
 const addTodo=(req,res)=>{
@@ -57,7 +58,69 @@ const listOfTodos=async (req, res) => {
 }
 
 
+const viewSingleTodo=asyncHandler(async (req, res) => {
+    const todo = await Todo.findById(req.params.id)
+  
+    if (todo) {
+      res.json(todo)
+    } else {
+      res.status(404)
+      .json({
+          message:'Unable to get the requested Todo'
+      })
+    }
+  })
+
+
+
+
+  const updateTodo = asyncHandler(async (req, res) => {
+
+    Todo.findOneAndUpdate({
+        _id:req.params.id
+    },{
+        $set:req.body
+    },{
+        new:true
+    },(err,todoUpdated)=>{
+        if(err){
+            return res.status(400).json({
+                err
+            })
+        }
+        else{
+            res.json({
+                message:'Todo Updated',
+                todoUpdated
+            })
+        }
+    })
+
+   
+  })
+
+
+
+const deleteTodo=asyncHandler(async(req,res)=>{
+
+    Todo.deleteOne({_id:req.params.id},(err,done)=>{
+        if(err){
+            res.status(400).json({
+                message:'Un able to delete'
+            })
+        }
+        else{
+            res.json({
+                message:'Todo Deleted'
+            })
+        }
+    })
+})
+
 export {
     addTodo,
-    listOfTodos
+    listOfTodos,
+    viewSingleTodo,
+    updateTodo,
+    deleteTodo
 }
