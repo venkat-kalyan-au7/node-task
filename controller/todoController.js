@@ -117,10 +117,32 @@ const deleteTodo=asyncHandler(async(req,res)=>{
     })
 })
 
+
+const deleteCompletedTodos= asyncHandler(async(req,res)=>{
+
+    var filter = {status:'done'}
+
+    Todo.deleteMany(filter,(err,sucess)=>{
+        if(err){
+            res.status(400).json({
+                message:'Unable to delete completed Todos'
+            })
+        }
+        else{
+            res.json({
+                message:'Completed Todos are deleted successfully'
+            })
+        }
+    })
+
+
+})
+
 export {
     addTodo,
     listOfTodos,
     viewSingleTodo,
     updateTodo,
-    deleteTodo
+    deleteTodo,
+    deleteCompletedTodos
 }

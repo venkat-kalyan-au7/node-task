@@ -8,7 +8,8 @@ import {addTodo,
     listOfTodos
     ,viewSingleTodo,
     updateTodo,
-    deleteTodo} from "../controller/todoController"
+    deleteTodo,
+    deleteCompletedTodos} from "../controller/todoController"
 
 
 
@@ -21,6 +22,8 @@ router.get('/tododetails/:id',viewSingleTodo)
 router.put('/updatetodo/:id',updateTodo)
 
 router.delete('/deletetodo/:id',deleteTodo)
+
+router.delete('/deletemany',deleteCompletedTodos)
 
 
 module.exports = router
