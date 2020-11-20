@@ -73,6 +73,27 @@ const viewSingleTodo=asyncHandler(async (req, res) => {
 
 
 
+const getTodoByTitle=asyncHandler(async(req,res)=>{
+    const query = await Todo.find({title:req.params.title})
+
+    if(query){
+        res.json({
+            query
+        })
+    }
+
+    else {
+        res.status(404)
+        .json({
+            message:'Search Item not Found'
+        })
+      }
+
+    
+})
+
+
+
 
   const updateTodo = asyncHandler(async (req, res) => {
 
@@ -144,5 +165,6 @@ export {
     viewSingleTodo,
     updateTodo,
     deleteTodo,
-    deleteCompletedTodos
+    deleteCompletedTodos,
+    getTodoByTitle
 }

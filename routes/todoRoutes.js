@@ -9,7 +9,8 @@ import {addTodo,
     ,viewSingleTodo,
     updateTodo,
     deleteTodo,
-    deleteCompletedTodos} from "../controller/todoController"
+    deleteCompletedTodos,
+    getTodoByTitle} from "../controller/todoController"
 
 
 
@@ -20,6 +21,8 @@ router.get('/viewtodos',listOfTodos)
 router.get('/tododetails/:id',viewSingleTodo)
 
 router.put('/updatetodo/:id',updateTodo)
+
+router.get('/:title',getTodoByTitle)
 
 router.delete('/deletetodo/:id',deleteTodo)
 
