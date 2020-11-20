@@ -14,10 +14,11 @@ const todoSchema = new mongoose.Schema({
         required:true,
         minlength:10
     },
-    images:{
-        required:true,
-        type:Array,
-        default:[]
+    image:{
+
+        type:String,
+        required:true
+        
     },
     targetDate:{
         type:Date,
@@ -26,7 +27,8 @@ const todoSchema = new mongoose.Schema({
     status:{
         type:String,
         enum:['todo','in-progress','done'],
-        required:true
+        required:true,
+        default:'todo'
     }
 })
 
