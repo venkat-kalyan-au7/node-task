@@ -1,5 +1,5 @@
 import Todo from "../models/todoModel"
-
+import asyncHandler from "express-async-handler"
 
 
 const addTodo=(req,res)=>{
@@ -28,6 +28,36 @@ const addTodo=(req,res)=>{
 }
 
 
+const listOfTodos=async (req, res) => {
+   
+    const { page = 1, limit = 10 } = req.query;
+  
+    try {
+     
+      const todos = await Todo.find()
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
+        .exec();
+  
+     
+      const count = await Todo.countDocuments();
+  
+      
+      res.json({
+        todos,
+        totalPages: Math.ceil(count / limit),
+        currentPage: page
+      });
+    } catch (err) {
+      res.status(400).json({
+          message:'Unable to fetch data',
+          err
+      })
+    }
+}
+
+
 export {
-    addTodo
+    addTodo,
+    listOfTodos
 }
