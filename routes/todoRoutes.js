@@ -12,7 +12,7 @@ import {addTodo,
     deleteCompletedTodos,
     getTodoByTitle,
     ByDate,
-    demoRoute
+    
     } from "../controller/todoController"
 
 import {DataValidation} from "../validations/dataValidation"
