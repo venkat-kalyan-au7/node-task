@@ -44,7 +44,7 @@ const listOfTodos=async (req, res) => {
       const count = await Todo.countDocuments();
   
       
-      res.json({
+      res.status(200).json({
         todos,
         totalPages: Math.ceil(count / limit),
         currentPage: page
